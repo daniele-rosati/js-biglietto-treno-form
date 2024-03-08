@@ -11,10 +11,10 @@
 
 
 document.getElementById('calculate').addEventListener('click', function() {
-        var km = parseFloat(document.getElementById('km').value);
-        var age = parseInt(document.getElementById('age').value);
+        const km = parseFloat(document.getElementById('km').value);
+        const age = parseInt(document.getElementById('age').value);
         
-        var ticketPrice = km * 0.21; // Prezzo base del biglietto
+        const ticketPrice = km * 0.21; // Prezzo base del biglietto
         
         // Applicazione degli sconti
         if (age < 18) { // Minorenni (sconto del 20%)
