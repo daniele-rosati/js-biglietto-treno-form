@@ -10,18 +10,25 @@
 // realizziamo le specifiche scritte sopra. La risposta finale (o output) sarà anch’essa da scrivere in console.
 
 
-document.getElementById('calculate').addEventListener('click', function() {
-        const km = parseFloat(document.getElementById('km').value);
-        const age = parseInt(document.getElementById('age').value);
-        
-        const ticketPrice = km * 0.21; // Prezzo base del biglietto
-        
-        // Applicazione degli sconti
-        if (age < 18) { // Minorenni (sconto del 20%)
-            ticketPrice *= 0.8;
-        } else if (age >= 65) { // Over 65 (sconto del 40%)
-            ticketPrice *= 0.6;
-        }
+// chiediamo all'utente di inserire il numero di km da percorrere
 
-        console.log("Il prezzo del biglietto è: " + ticketPrice.toFixed(2) + "€");
-    });
+const km = parseInt(prompt("inseirsci il numero di chilometri da percorrere:"));
+
+// chiediamo gli anni dell'utente
+
+const age = parseInt(prompt("quando anni hai: "));
+
+// iniziamo a calcolare il costo del biglietto
+
+const prezzotot = km * 0.21;
+
+// creiamo il ciclo che mi permette di applicare gli sconti
+
+const discount = 0;
+
+if(age < 18){
+   discount = prezzotot * 20 / 100;
+} else if (age > 65) {
+    discount = prezzotot * 40 / 100;
+}
+alert("Il prezzo totale del biglietto è: ", discount + " €");
