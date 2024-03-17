@@ -1,18 +1,35 @@
-document.getElementById('ticketForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Previene il comportamento predefinito del form
-    
-    const km = parseFloat(document.getElementById('km').value);
-    const age = parseInt(document.getElementById('age').value);
-    
-    const ticketPrice = km * 0.21; // Prezzo base del biglietto
-    
-    // Applicazione degli sconti
-    if (age < 18) { // Minorenni (sconto del 20%)
-        ticketPrice *= 0.8;
-    } else if (age >= 65) { // Over 65 (sconto del 40%)
-        ticketPrice *= 0.6;
+
+  // Gestore dell'evento di invio del form
+  document.getElementById('ticketForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita il comportamento predefinito del form
+
+    // Ottieni i valori inseriti dall'utente
+    const kilometers = parseFloat(document.getElementById('kmInput').value);
+    const age = parseInt(document.getElementById('ageInput').value);
+
+    // Calcola il prezzo del biglietto
+    const ticketPricePerKm = 0.21;
+    let totalPrice = kilometers * ticketPricePerKm;
+
+    // Applica gli sconti
+    if (age < 18) {
+      const discount = totalPrice * 0.2;
+      totalPrice -= discount;
+    } else if (age >= 65) {
+      const discount = totalPrice * 0.4;
+      totalPrice -= discount;
     }
 
-    const resultElement = document.getElementById('result');
-    resultElement.innerHTML = "Il prezzo del biglietto è: " + ticketPrice.toFixed(2) + "€";
-});
+    // Formatta il prezzo finale
+    totalPrice = totalPrice.toFixed(2);
+
+    // Mostra il recap dei dati e il prezzo finale in pagina
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = `
+      <h2>Recap Dati:</h2>
+      <p>Chilometri da percorrere: ${kilometers} km</p>
+      <p>Età del passeggero: ${age} anni</p>
+      <h2>Prezzo Finale:</h2>
+      <p>Il prezzo totale del viaggio è: ${totalPrice} €.</p>
+    `;
+  });
